@@ -1,7 +1,7 @@
 class BlogPostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_blog_post, only: [:show, :edit, :update, :destroy]
   
+  before_action :correct_user, only: [:destroy ,:edit , :update]
 
   respond_to :html
 
@@ -48,10 +48,10 @@ class BlogPostsController < ApplicationController
   end
 
   private
-    def set_blog_post
-      @blog_post = BlogPost.find(params[:id])
+    def correct_user
+        @post = current_user.posts.find_by(id: params[:id])
+        redirect_to root_url if @post.nil?
     end
-    
 
     def blog_post_params
       params.require(:blog_post).permit(:title, :post, :user_id)
