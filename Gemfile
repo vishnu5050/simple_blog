@@ -23,7 +23,8 @@ gem 'paperclip'
 
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'ruby-nodejs', '~> 0.0.1'
-
+gem 'bootstrap-sass'
+gem 'responsive-nav-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

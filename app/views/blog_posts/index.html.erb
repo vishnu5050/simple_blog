@@ -1,33 +1,20 @@
-<h1>Listing blog_posts</h1>
+<% @blog_posts.each do |blog_post| %>
+  
+  
+  <div class="page-header">
+     <h1><%= link_to blog_post.title , blog_post %>    <small>posted <%= time_ago_in_words(blog_post.created_at) %> ago  by    <u><%= blog_post.user.email %></u></small></h1>
+     <p><%= simple_format(h blog_post.post)  %></p>
+ 
+  <%= link_to 'Show', blog_post , class:"btn btn-default navbar-btn" %>
+   
+  <%= link_to 'Edit', edit_blog_post_path(blog_post), class:"btn btn-default navbar-btn"  %>
+  <%= link_to 'Destroy', blog_post, method: :delete, class:"btn btn-default navbar-btn", data: { confirm: 'Are you sure?' } %>
+  
+   </div>
+    
+  <% end %>
+  
 
-<table>
-  <thead>
-    <tr>
-      <th>User image</th>
-      <th>User</th>
-      <th>Title</th>
-      <th>Post</th>
-      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @blog_posts.each do |blog_post| %>
-      <tr>
-        <td><%= image_tag(blog_post.user.avatar.url(:thumb)) %></td>
-        <td><%= blog_post.user.email if blog_post.user.present? %></td>
-        <td><%= blog_post.title %></td>
-        <td><%= blog_post.post %></td>
-        
-        <td><%= link_to 'Show', blog_post %></td>
-        <td><%= link_to 'Edit', edit_blog_post_path(blog_post) %></td>
-        <td><%= link_to 'Destroy', blog_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Blog post', new_blog_post_path %>

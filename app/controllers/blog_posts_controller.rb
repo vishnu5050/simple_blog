@@ -1,7 +1,7 @@
 class BlogPostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index,:show]
   
-  before_action :correct_user, only: [:destroy ,:edit , :update]
+  before_action :correct_user, only: [:destroy ,:edit , :update,]
 
   respond_to :html
 
@@ -19,7 +19,7 @@ class BlogPostsController < ApplicationController
   end
 
   def new
-    @blog_post = BlogPost.new
+    @blog_post = current_user.blog_posts.new
     respond_with(@blog_post)
   end
 
@@ -27,14 +27,10 @@ class BlogPostsController < ApplicationController
   end
 
   def create
-    @blog_post = current_user.blog_posts.build(blog_post_params)
-    if @blog_post.save
-      redirect_to root_url
-      flash[:success] = "Blog Post Created successfully"
-    else
-      render 'new'
-    end
-    #respond_with(@blog_post)
+    @blog_post = current_user.blog_posts.new(blog_post_params)
+    @blog_post.user = current_user
+    @blog_post.save
+    respond_with(@blog_post)
   end
 
   def update
@@ -49,8 +45,8 @@ class BlogPostsController < ApplicationController
 
   private
     def correct_user
-        @post = current_user.posts.find_by(id: params[:id])
-        redirect_to root_url if @post.nil?
+        @blog_post = current_user.blog_posts.find_by(id: params[:id])
+        redirect_to root_url if @blog_post.nil?
     end
 
     def blog_post_params

@@ -1,0 +1,41 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+header{
+    margin-bottom:35px;
+}
+body{
+    margin-top:40px;
+}
+.post-heading {
+    text-transform:Capitalize;
+    span {
+        text-transform:lowercase;
+    }
+}
+.post-content {
+    text-transform:Capitalize;
+    font-size:20px;
+}
+.page-header {
+    h1{
+    text-transform:capitalize;
+    font-family: Ubuntu, sans-serif;
+    font-weight:300px;
+    }
+    p{
+        text-transform:capitalize;
+    }
+        small{
+            text-transform:lowercase;
+            font-size:12px;
+            font-weight:400px;
+            u{
+                font-size:20px;
+                font-weight:400px;
+            }
+        }  
+    
+    
+}
