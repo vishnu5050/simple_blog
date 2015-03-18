@@ -3,7 +3,7 @@
   
   <div class="page-header">
      <h1><%= link_to blog_post.title , blog_post %>    <small>posted <%= time_ago_in_words(blog_post.created_at) %> ago  by    <u><%= blog_post.user.email %></u></small></h1>
-     <p><%= simple_format(h blog_post.post)  %></p>
+     <p><%=  simple_format(h truncate blog_post.post , length:20)  %></p>
     
   <%= link_to 'Show', blog_post , class:"btn btn-default navbar-btn"  %>
    
